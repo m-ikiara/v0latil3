@@ -1,18 +1,14 @@
 {
-  "name": "ohayo_tomomi_desu",
+  "name": "v0latil3",
   "version": "1.0.0",
-  "description": "Tomomi: The Task Manager",
+  "description": "Volatile: The Trading Bot",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brian-ikiara/ohayo_tomomi_desu"
+    "url": "https://github.com/brian-ikiara/v0latil3"
   },
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
-    "check-lint": "lint [0-9]*.js",
-    "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
-    "server": "nodemon --exec babel-node --presets babel-preset-env ./tomomi_server/index.js",
-    "client": "npm run dev --prefix tomomi_client",
     "dev": "bun serve"
   },
   "authors": [
@@ -21,7 +17,11 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
+    "eslint": "^8.49.0",
+    "express": "^4.17.1",
+    "uws": "^200.0.0"
   },
-  "devDependencies": {
+  "engines": {
+    "node": ">=12.0.0"
   }
 }
