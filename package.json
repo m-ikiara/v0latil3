@@ -1,0 +1,27 @@
+{
+  "name": "ohayo_tomomi_desu",
+  "version": "1.0.0",
+  "description": "Tomomi: The Task Manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-ikiara/ohayo_tomomi_desu"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint",
+    "check-lint": "lint [0-9]*.js",
+    "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
+    "server": "nodemon --exec babel-node --presets babel-preset-env ./tomomi_server/index.js",
+    "client": "npm run dev --prefix tomomi_client",
+    "dev": "bun serve"
+  },
+  "authors": [
+    "Gilbert Kiana",
+    "Brian M'Ikiara"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
