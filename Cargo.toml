@@ -1,0 +1,14 @@
+[package]
+name = "v0latil3"
+version = "0.1.0"
+edition = "2021"
+authors = [
+  "Gilbert Kiana",
+  "Brian M'Ikiara"
+]
+
+[dependencies]
+websocket = "0.27.0"
+rustwasm = ""
+tokio-tungstenite = "0.21.0"
+crossterm = "0.27.0"
