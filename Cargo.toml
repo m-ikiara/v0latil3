@@ -11,3 +11,4 @@ authors = [
 hyper_wasi = { version = "0.15.2", features = ["full"] }
 tokio_wasi = { version = "1.25", features = ["full"] }
 crossterm = "0.27.0"
+wasm = "0.0.0"
