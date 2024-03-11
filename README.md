@@ -1,22 +1,13 @@
 <div align="center">
-
-  <h1>v0latil3</h1>
-  <strong>A Forex Trading Bot.</strong>
-<!--
-  <p>
-    <a href="https://github.com/m-ikiara/v0latil3">
-        <img src="https://img.shields.io/travis/rustwasm/wasm-pack-template.svg?style=flat-square" alt="Build Status" />
-    </a>
-  </p>
-
-  <h3>
-    <a href="https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html">Tutorial</a>
-    <span> | </span>
-    <a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
-  </h3>
-
-  <sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
--->
+    <h1>v0latil3</h1>
+    <strong>The Forex Trading Bot.</strong>
+    <p>
+        <a href="https://github.com/m-ikiara/v0latil3/issues">
+            <img
+                alt="GitHub Issues or Pull Requests"
+                src="https://img.shields.io/github/issues/m-ikiara/v0latil3" />
+        </a>
+    </p>
 </div>
 
 ## About
@@ -31,12 +22,10 @@ Head over to the official [website](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ### Rust
 
-- [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen)
-- [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
+- [`tiny_http`](https://github.com/tiny-http/tiny-http)
 
 ### JavaScript
 
-- [`webpack`](https://github.com/webpack/webpack)
 - [`uws`](https://github.com/uNetworking/uWebSockets)
 
 ## License
@@ -50,3 +39,11 @@ This project is licensed under the following:
 
 - Gilbert Kiana @gilbert-kiana: Project Lead, Senior Dev
 - Brian M'Ikiara @m-ikiara: Back-End Dev
+
+<!--
+<h3>
+<a href="https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html">Tutorial</a>
+<span> | </span>
+<a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
+</h3>
+-->

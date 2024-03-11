@@ -1,10 +1,20 @@
-pub fn set_panic_hook() {
-    // When the `console_error_panic_hook` feature is enabled, we can call the
-    // `set_panic_hook` function at least once during initialization, and then
-    // we will get better error messages if our code ever panics.
-    //
-    // For more details see
-    // https://github.com/rustwasm/console_error_panic_hook#readme
-    #[cfg(feature = "console_error_panic_hook")]
-    console_error_panic_hook::set_once();
+use std::str;
+
+pub fn
+print_usage(context: &str) -> Result<(), ()>
+{
+    eprintln!("
+Welcome to v0latil3's Commandline Utility! ^-^
+Wondering how to use this amazing resource? Check out the below arguments to
+get started.
+
+Usage: {context} [ARGS]
+Args:
+    hello   Displays this message
+    serve   Spawns the HTTP server
+
+Hope you found this info useful. Check out the GitHub repo for more details.
+Link:   https://github.com/m-ikiara/v0latil3
+            ");
+    Err(())
 }
