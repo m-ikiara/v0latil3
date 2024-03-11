@@ -1,12 +1,13 @@
-use std::net::SocketAddr;
-use tokio::net::TCPListener;
+mod utils;
 
-#[tokio::main(flavor = "current_thread")]
-async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let address = SocketAddr::from(([0,0,0,0], 5000));
+use wasm_bindgen::prelude::*;
 
-    let listener = TcpListener::bind(address).await?;
-    println!("[SERVER_INFO] Listening on http://", addr);
+#[wasm_bindgen]
+extern "C" {
+    fn alert(s: &str);
+}
 
-    Ok(())
+#[wasm_bindgen]
+pub fn greet() {
+    alert("Hello, v0latil3!");
 }

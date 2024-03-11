@@ -1,14 +1,21 @@
 [package]
 name = "v0latil3"
 version = "0.1.0"
-edition = "2021"
-authors = [
-  "Gilbert Kiana",
-  "Brian M'Ikiara"
-]
+authors = ["m-ikiara <brnikiara@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["console_error_panic_hook"]
 
 [dependencies]
-hyper_wasi = { version = "0.15.2", features = ["full"] }
-tokio_wasi = { version = "1.25", features = ["full"] }
-crossterm = "0.27.0"
-wasm = "0.0.0"
+wasm-bindgen = "0.2.84"
+console_error_panic_hook = { version = "0.1.7", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"
+
+[profile.release]
+opt-level = "s"
