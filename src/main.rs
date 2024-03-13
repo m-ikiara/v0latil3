@@ -6,6 +6,7 @@ mod utils;
 use utils::print_usage;
 mod server;
 
+#[allow(unused_must_use)]
 fn
 entry() -> Result<(), ()>
 {

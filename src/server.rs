@@ -31,6 +31,7 @@ handle_request(request: Request) -> io::Result<()>
              request.headers()
     );
 
+    println!("[TODO] Implement the Authentication route");
     match (request.method(), request.url()) {
         (Method::Get, "/index.js") => {
             serve_page(request,
@@ -41,13 +42,13 @@ handle_request(request: Request) -> io::Result<()>
 
         (Method::Get, "/") | (Method::Get, "/index.html") => {
             serve_page(request,
-                       include_bytes!("./index.html"),
+                       include_bytes!("../index.html"),
                        "text/html; charset=utf-8"
             )
         }
 
         _ => {
-            handle_404(request, include_bytes!("404.html"))
+            handle_404(request, include_bytes!("../404.html"))
         }
     }
 }
@@ -66,7 +67,7 @@ start_server(address: &str) -> Result<(), ()>
     for request in server.incoming_requests() {
         handle_request(request).map_err(|err| {
             eprintln!("[ERR_SERVER] Couldn't respond: {err}")
-        }).ok().expect("all requests have been handled")
+        }).ok().expect("all requests are handled")
     }
 
     eprintln!("[ERR_SERVER] Socket has shutdown! T-T");
