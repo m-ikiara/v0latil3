@@ -1,5 +1,5 @@
 const connection = new Promise((resolve, reject) => {
-	const web_socket = new WebSocket('wss://ws.derivws.com/websockets/v3?app_id=52321');
+	const web_socket = new WebSocket('wss://ws.derivws.com/websockets/v3?app_id=53083');
 	web_socket.onopen = () => resolve(web_socket);
 	web_socket.onerror = reject;
 });
