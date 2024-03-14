@@ -1,0 +1,37 @@
+{
+  "type": "module",
+  "name": "v0latil3",
+  "version": "0.1.0",
+  "description": "The Forex Trading Bot",
+  "main": "./index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-ikiara/v0latil3.git"
+  },
+  "keywords": [
+    "forex",
+    "trading",
+    "bot"
+  ],
+  "authors": [
+    "m-ikiara",
+    "gilbert-kiana"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m-ikiara/v0latil3/issues"
+  },
+  "homepage": "https://github.com/m-ikiara/v0latil3#readme",
+  "presets": [
+    "es2015",
+    "stage-2"
+  ],
+  "plugins": [],
+  "dependencies": {
+    "@deriv/deriv-api": "^1.0.15",
+    "ws": "^8.16.0"
+  }
+}
