@@ -26,7 +26,7 @@ Head over to the official [website](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ### JavaScript
 
-- [`uws`](https://github.com/uNetworking/uWebSockets)
+- [`ws`](https://github.com/websockets/ws)
 
 ## License
 
@@ -37,8 +37,8 @@ This project is licensed under the following:
 
 ### Contribution
 
-- Gilbert Kiana @gilbert-kiana: Project Lead, Senior Dev
-- Brian M'Ikiara @m-ikiara: Back-End Dev
+- Gilbert Kiana [@gilbert-kiana](https://github.com/gilbert-kiana): Project Lead, Senior Dev
+- Brian M'Ikiara [@m-ikiara](https://github.com/m-ikiara): Back-End Dev
 
 <!--
 <h3>
