@@ -13,7 +13,7 @@ connection
 			const data = JSON.parse(response.data);
 			if (data.error !== undefined) {
 				console.error(`[ERROR] ${data.error.message}`);
-				connection.removeListener('message', tickResponse, false);
+				connection.removeEventListener('message', tickResponse, false);
 				await api.disconnect();
 			}
 			if (data.msg_type === 'tick') console.log(data.tick);
@@ -21,18 +21,18 @@ connection
 
 		const subscribe_ticks = async () => {
 			await tick_stream();
-			connection.addListener('message', tick_response);
+			connection.addEventListener('message', tick_response);
 		}
 
 		const unsubscribe_ticks = async () => {
-			await connection.removeListener('message', tick_response, false);
+			await connection.removeEventListener('message', tick_response, false);
 			tick_stream().unsubscribe();
 		}
 
 		const subscribe_ticks_button = document.querySelector('#ticks');
-		subscribe_ticks_button.addListener('click', subscribe_ticks);
+		subscribe_ticks_button.addEventListener('click', subscribe_ticks);
 
 		const unsubscribe_ticks_button = document.querySelector('#ticks');
-		unsubscribe_ticks_button.addListener('click', unsubscribe_ticks);
+		unsubscribe_ticks_button.addEventListener('click', unsubscribe_ticks);
 	})
 	.catch((err) => console.log(err));
