@@ -5,14 +5,14 @@ connection.onopen = () => {
 	const api = new DerivAPIBasic({ connection });
 	const tick_stream = () => api.subscribe({ ticks: 'R_100' });
 
-	const tick_response = (response) => {
+	const tick_response = async (response) => {
 		const data = JSON.parse(response.data);
 		if (data.error !== undefined) {
 			console.error(`[ERROR] ${data.error.message}`);
 			connection.removeEventListener('message', tickResponse, false);
-			await api.disconnect();
+			api.disconnect();
 		}
-		if (data.msg_type === 'tick') console.log(data.tick);
+		await if (data.msg_type === 'tick') console.log(data.tick);
 	};
 
 	const subscribe_ticks = async () => {
