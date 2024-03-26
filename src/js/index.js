@@ -30,6 +30,6 @@ connection.onopen = () => {
 
 	const unsubscribe_ticks_button = document.querySelector('#ticks');
 	unsubscribe_ticks_button.addEventListener('click', unsubscribe_ticks);
-});
+};
 
 connection.onerror = (err) => console.log(`[ERROR] Failed to create a Web Socket Connection: ${err}`);
