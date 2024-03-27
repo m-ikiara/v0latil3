@@ -33,9 +33,9 @@ handle_request(request: Request) -> io::Result<()>
 
     println!("[TODO] Implement the Authentication route");
     match (request.method(), request.url()) {
-        (Method::Get, "/index.js") => {
+        (Method::Get, "/js/index.js") => {
             serve_page(request,
-                       include_bytes!("./js/index.js"),
+                       include_bytes!("../js/index.js"),
                        "text/javascript; charset=utf-8"
             )
         }
