@@ -12,20 +12,30 @@ connection
 			connection: web_socket,
 			lang: 'EN',
 		});
+
 		const tick_stream = api.ticks('R_100');
-
 		const subscribe_ticks = async () => {
-			await tick_stream.onUpdate().subscribe(console.log);
-		}
-
+			await tick_stream.subscribe(console.log);
+		};
 		const unsubscribe_ticks = async () => {
 			await tick_stream().unsubscribe();
-		}
+		};
+		const get_ticks_history = async () => {
+			const ticks_history = await tick_stream.history({
+				count: 100,
+				end: Date.now(),
+			});
+			console.log(ticks_history);
+		};
 
-		const subscribe_ticks_button = document.querySelector('#ticks');
-		subscribe_ticks_button.addEventListener('click', subscribe_ticks);
-
-		const unsubscribe_ticks_button = document.querySelector('#ticks');
-		unsubscribe_ticks_button.addEventListener('click', unsubscribe_ticks);
+		document.getElementById('subscribe-ticks').onclick = () => {
+			subscribe_ticks();
+		};
+		document.getElementById('unsubscribe-ticks').onclick = () => {
+			unsubscribe_ticks();
+		};
+		document.getElementById('get-ticks-history').onclick = () => {
+			get_ticks_history();
+		};
 	})
 	.catch((err) => console.log(err));
