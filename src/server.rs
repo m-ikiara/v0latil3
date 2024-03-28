@@ -14,10 +14,18 @@ serve_page(request: Request, bytes: &[u8],
 }
 
 pub fn
+handle_301(request: Request, bytes: &[u8]) -> io::Result<()>
+{
+    request.respond(
+        Response::from_data(bytes).with_status_code(StatusCode(301))
+    )
+}
+
+pub fn
 handle_404(request: Request, bytes: &[u8]) -> io::Result<()>
 {
     request.respond(
-            Response::from_data(bytes).with_status_code(StatusCode(404))
+        Response::from_data(bytes).with_status_code(StatusCode(404))
     )
 }
 
@@ -33,9 +41,21 @@ handle_request(request: Request) -> io::Result<()>
 
     println!("[TODO] Implement the Authentication route");
     match (request.method(), request.url()) {
-        (Method::Get, "/index.js") => {
+        // (Method::Post, "/verify") => { }
+        (Method::Get, "/api/ticks") => {
             serve_page(request,
-                       include_bytes!("./js/index.js"),
+                       include_bytes!("../html/ticks.html"),
+                       "text/html; charset=utf-8"
+            )
+        }
+
+        (Method::Get, "/redirect") => {
+            handle_301(request, include_bytes!("../html/redirect.html"))
+        }
+
+        (Method::Get, "/js/index.js") => {
+            serve_page(request,
+                       include_bytes!("../js/index.js"),
                        "text/javascript; charset=utf-8"
             )
         }
@@ -48,7 +68,7 @@ handle_request(request: Request) -> io::Result<()>
         }
 
         _ => {
-            handle_404(request, include_bytes!("../404.html"))
+            handle_404(request, include_bytes!("../html/404.html"))
         }
     }
 }
