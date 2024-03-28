@@ -12,26 +12,14 @@ connection
 			connection: web_socket,
 			lang: 'EN',
 		});
-		const tick_stream = () => api.subscribe({ ticks: 'R_100' });
-
-		const tick_response = async (response) => {
-			const data = JSON.parse(response.data);
-			if (data.error !== undefined) {
-				console.error(`[ERROR] ${data.error.message}`);
-				connection.removeEventListener('message', tickResponse, false);
-				await api.disconnect();
-			}
-			if (data.msg_type === 'tick') console.log(data.tick);
-		};
+		const tick_stream = api.ticks('R_100');
 
 		const subscribe_ticks = async () => {
-			await tick_stream();
-			connection.addEventListener('message', tick_response);
+			await tick_stream.onUpdate().subscribe(console.log);
 		}
 
 		const unsubscribe_ticks = async () => {
-			await connection.removeEventListener('message', tick_response, false);
-			tick_stream().unsubscribe();
+			await tick_stream().unsubscribe();
 		}
 
 		const subscribe_ticks_button = document.querySelector('#ticks');
