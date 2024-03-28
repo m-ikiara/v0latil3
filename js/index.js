@@ -7,8 +7,10 @@ const connection = new Promise((resolve, reject) => {
 connection
 	.then(async (web_socket) => {
 		const api = await new DerivAPIBasic({ 
+			endpoint: 'ws.deriv.com',
 			app_id: 53272,
 			connection: web_socket,
+			lang: 'EN',
 		});
 		const tick_stream = () => api.subscribe({ ticks: 'R_100' });
 
