@@ -6,7 +6,10 @@ const connection = new Promise((resolve, reject) => {
 
 connection
 	.then(async (web_socket) => {
-		const api = await new DerivAPIBasic({ app_id: 53272, web_socket  });
+		const api = await new DerivAPIBasic({ 
+			app_id: 53272,
+			connection: web_socket,
+		});
 		const tick_stream = () => api.subscribe({ ticks: 'R_100' });
 
 		const tick_response = async (response) => {
