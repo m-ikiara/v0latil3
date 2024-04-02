@@ -20,14 +20,10 @@ connection
 			start: 1,
 			style: 'ticks',
 		};
-		const ticks_request = {
-			...ticks_request_block,
-			subscribe: 1,
-		};
-		const tick_stream = () => api.subscribe(ticks_request);
+		const tick_stream = () => api.subscribe({ ticks: 'R_100' });
 		const ticks_stream_response = async (response) => {
 			const ticks_data = JSON.parse(response.data);
-			if (ticks_data.error) {
+			if (ticks_data.error !== undefined) {
 				console.error('[ERROR] Failed to parse the message type');
 				console.log(ticks_data.error.message);
 				web_socket.removeEventListener(
@@ -40,9 +36,8 @@ connection
 			if (ticks_data.msg_type === 'tick') console.log(ticks_data.tick);
 		};
 		const ticks_history_response = async (response) => {
-			console.log(response.json());
 			const ticks_data = JSON.parse(response.data);
-			if (ticks_data.error) {
+			if (ticks_data.error !== undefined) {
 				console.error('[ERROR] Failed to parse the message type');
 				console.log(ticks_data.error.message);
 				web_socket.removeEventListener(
@@ -65,7 +60,7 @@ connection
 			console.log('[INFO] Stopping the Tick Stream');
 			web_socket.removeEventListener(
 				'message',
-				ticks_history_response,
+				ticks_stream_response,
 				false,
 			);
 			await tick_stream().unsubscribe();
@@ -74,6 +69,7 @@ connection
 		const get_ticks_history = async () => {
 			console.log('[INFO] Fetching the Ticks History...');
 			web_socket.addEventListener('message', ticks_history_response);
+			await api.ticksHistory(ticks_request_block);
 		};
 
 		document.getElementById('subscribe-ticks').onclick = () => {
