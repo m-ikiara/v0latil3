@@ -5,10 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Volatile: The Trading Bot</title>
 		<!-- link rel="x/icon" src="{{ "/assets/img/favicon.ico" }}" /-->
+		<!-- link rel="stylesheet" href="/styles/index.css" /-->
 	</head>
 	<body>
-		<h1>Welcome to Volatile</h1>
-		<a href="https://m-ikiara.github.com/v0latil3/api/ticks">[Prod] Check out the Ticks Manager</a>
-		<a href="http://127.0.0.1:6969/api/ticks">[Dev] Check out the Ticks Manager</a>
+		<h1>Ticks Manager</h1>
+		<button id="subscribe-ticks" class="submitBtn">
+			Subscribe
+		</button>
+		<button id="unsubscribe-ticks" class="resetBtn">
+			Unsubscribe
+		</button>
+		<button id="get-ticks-history" class="historyBtn">
+			List History
+		</button>
+		<script src="https://cdn.jsdelivr.net/npm/ws@latest/dist/ws.min.js">
+			import { WebSocket } from 'ws';
+		</script>
+		<script src="https://unpkg.com/@deriv/deriv-api/dist/DerivAPIBasic.js">
+			import { DerivAPIBasic } from 'https://unpkg.com/@deriv/deriv-api/dist/DerivAPIBasic.js';
+		</script>
+		<script type="module" src="/js/index.js"></script>
 	</body>
 </html>
+
