@@ -12,20 +12,52 @@ connection
 			connection: web_socket,
 			lang: 'EN',
 		});
-
+		const ticks_request_block = {
+			ticks_history: 'R_100',
+			adjust_start_time: 1,
+			count: 10,
+			end: 'latest',
+			start: 1,
+			style: 'ticks',
+		};
+		const ticks_request = {
+			...ticks_request_block,
+			subscribe: 1,
+		};
+		const tick_stream = () => api.subscribe(ticks_request);
+		const ticks_stream_response = async (response) => {
+			const ticks_data = JSON.parse(response.data);
+			if (ticks_data.error) {
+				console.error('[ERROR] Failed to parse the message type');
+				console.log(ticks_data.error.message);
+				await api.disconnect();
+			}
+			if (ticks_data.msg_type === 'tick') console.log(ticks_data.tick);
+		};
+		const ticks_history_response = async (response) => {
+			const ticks_data = JSON.parse(response.data);
+			if (ticks_data.error) {
+				console.error('[ERROR] Failed to parse the message type');
+				console.log(ticks_data.error.message);
+				await api.disconnect();
+			}
+			if (ticks_data.msg_type === 'history')
+				console.log(ticks_data.history);
+		};
 		const subscribe_ticks = async () => {
-			const tick_stream = await api.ticks({ subscribe: 1, ticks: 'R_100'});
-			console.log(tick_stream);
+			console.log('[INFO] Starting the Tick Stream');
+			await tick_stream();
+			console.log('[INFO] Tick Stream initialized. Outputting...');
+			await ticks_response();
 		};
 		const unsubscribe_ticks = async () => {
-			const tick_stream = await api.ticks({ subscribe: 0, ticks: 'R_100' });
+			console.log('[INFO] Stopping the Tick Stream');
+			await tick_stream().unsubscribe();
+			console.log('[INFO] Tick Stream stopped');
 		};
 		const get_ticks_history = async () => {
-			const ticks_history = await api.ticksHistory({
-				count: 100,
-				end: Date.now(),
-			});
-			console.log(ticks_history);
+			console.log('[INFO] Fetching the Ticks History...');
+			await ticks_history_response();
 		};
 
 		document.getElementById('subscribe-ticks').onclick = () => {
