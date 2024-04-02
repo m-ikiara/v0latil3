@@ -21,7 +21,7 @@ connection
 			const tick_stream = api.ticks({ subscribe: 0, ticks: 'R_100' });
 		};
 		const get_ticks_history = async () => {
-			const ticks_history = await tick_stream.ticksHistory({
+			const ticks_history = api.ticksHistory({
 				count: 100,
 				end: Date.now(),
 			});
