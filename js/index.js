@@ -30,6 +30,11 @@ connection
 			if (ticks_data.error) {
 				console.error('[ERROR] Failed to parse the message type');
 				console.log(ticks_data.error.message);
+				connection.removeEventListener(
+					'message',
+					ticks_stream_response,
+					false,
+				);
 				await api.disconnect();
 			}
 			if (ticks_data.msg_type === 'tick') console.log(ticks_data.tick);
@@ -40,6 +45,11 @@ connection
 			if (ticks_data.error) {
 				console.error('[ERROR] Failed to parse the message type');
 				console.log(ticks_data.error.message);
+				connection.removeEventListener(
+					'message',
+					ticks_history_response,
+					false,
+				);
 				await api.disconnect();
 			}
 			if (ticks_data.msg_type === 'history')
@@ -47,18 +57,23 @@ connection
 		};
 		const subscribe_ticks = async () => {
 			console.log('[INFO] Starting the Tick Stream');
+			connection.addEventListener('message', ticks_stream_response);
 			await tick_stream();
 			console.log('[INFO] Tick Stream initialized. Outputting...');
-			await ticks_stream_response();
 		};
 		const unsubscribe_ticks = async () => {
 			console.log('[INFO] Stopping the Tick Stream');
+			connection.removeEventListener(
+				'message',
+				ticks_history_response,
+				false,
+			);
 			await tick_stream().unsubscribe();
 			console.log('[INFO] Tick Stream stopped');
 		};
 		const get_ticks_history = async () => {
 			console.log('[INFO] Fetching the Ticks History...');
-			await ticks_history_response();
+			connection.addEventListener('message', ticks_history_response);
 		};
 
 		document.getElementById('subscribe-ticks').onclick = () => {
