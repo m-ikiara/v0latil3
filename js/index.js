@@ -13,12 +13,12 @@ connection
 			lang: 'EN',
 		});
 
-		const tick_stream = api.ticks('R_100');
 		const subscribe_ticks = async () => {
-			console.log(await tick_stream.subscribe());
+			const tick_stream = api.ticks({ subscribe: 1, ticks: 'R_100'});
+			console.log(tick_stream);
 		};
 		const unsubscribe_ticks = async () => {
-			await tick_stream.unsubscribe();
+			const tick_stream = api.ticks({ subscribe: 0, ticks: 'R_100' });
 		};
 		const get_ticks_history = async () => {
 			const ticks_history = await tick_stream.ticksHistory({
