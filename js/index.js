@@ -35,6 +35,7 @@ connection
 			if (ticks_data.msg_type === 'tick') console.log(ticks_data.tick);
 		};
 		const ticks_history_response = async (response) => {
+			console.log(response.json());
 			const ticks_data = JSON.parse(response.data);
 			if (ticks_data.error) {
 				console.error('[ERROR] Failed to parse the message type');
@@ -48,7 +49,7 @@ connection
 			console.log('[INFO] Starting the Tick Stream');
 			await tick_stream();
 			console.log('[INFO] Tick Stream initialized. Outputting...');
-			await ticks_response();
+			await ticks_stream_response();
 		};
 		const unsubscribe_ticks = async () => {
 			console.log('[INFO] Stopping the Tick Stream');
