@@ -5,8 +5,7 @@ use std::str;
 use tiny_http::{Header, Method, Request, Response, Server, StatusCode};
 
 pub fn
-serve_page(request: Request, bytes: &[u8],
-           content_type: &str) -> io::Result<()> 
+serve_page(request: Request, bytes: &[u8], content_type: &str) -> io::Result<()> 
 {
     let header = Header::from_bytes(
         "Content-Type", content_type) .expect("no garbage in header");
@@ -41,12 +40,18 @@ handle_request(request: Request) -> io::Result<()>
 
     println!("[TODO] Implement the Authentication route");
     match (request.method(), request.url()) {
-        // (Method::Post, "/verify") => { }
         (Method::Get, "/api/ticks") => {
             serve_page(request,
                        include_bytes!("../html/ticks.html"),
                        "text/html; charset=utf-8"
             )
+        }
+
+        (Method::Post, "/verify") => {
+            serve_page(request,
+                       include_bytes!("../html/verify.html"),
+                       "text/html; charset=utf-8"
+                      )
         }
 
         (Method::Get, "/redirect") => {

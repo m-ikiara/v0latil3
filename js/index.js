@@ -15,13 +15,13 @@ connection
 
 		const tick_stream = api.ticks('R_100');
 		const subscribe_ticks = async () => {
-			await tick_stream.subscribe(console.log);
+			console.log(await tick_stream.subscribe());
 		};
 		const unsubscribe_ticks = async () => {
-			await tick_stream().unsubscribe();
+			await tick_stream.unsubscribe();
 		};
 		const get_ticks_history = async () => {
-			const ticks_history = await tick_stream.history({
+			const ticks_history = await tick_stream.ticksHistory({
 				count: 100,
 				end: Date.now(),
 			});
