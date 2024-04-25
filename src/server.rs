@@ -42,38 +42,38 @@ handle_request(request: Request) -> io::Result<()>
     match (request.method(), request.url()) {
         (Method::Get, "/api/ticks") => {
             serve_page(request,
-                       include_bytes!("../html/ticks.html"),
+                       include_bytes!("./html/ticks.html"),
                        "text/html; charset=utf-8"
             )
         }
 
         (Method::Post, "/verify") => {
             serve_page(request,
-                       include_bytes!("../html/verify.html"),
+                       include_bytes!("./html/verify.html"),
                        "text/html; charset=utf-8"
                       )
         }
 
         (Method::Get, "/redirect") => {
-            handle_301(request, include_bytes!("../html/redirect.html"))
+            handle_301(request, include_bytes!("./html/redirect.html"))
         }
 
-        (Method::Get, "/js/index.js") => {
+        (Method::Get, "/index.js") => {
             serve_page(request,
-                       include_bytes!("../js/index.js"),
+                       include_bytes!("./js/index.js"),
                        "text/javascript; charset=utf-8"
             )
         }
 
         (Method::Get, "/") | (Method::Get, "/index.html") => {
             serve_page(request,
-                       include_bytes!("../index.html"),
+                       include_bytes!("./index.html"),
                        "text/html; charset=utf-8"
             )
         }
 
         _ => {
-            handle_404(request, include_bytes!("../html/404.html"))
+            handle_404(request, include_bytes!("./html/404.html"))
         }
     }
 }
