@@ -24,7 +24,6 @@ connection
         const ticks_stream_response = async (response) => {
             const ticks_data = JSON.parse(response.data);
             if (ticks_data.error !== undefined) {
-                console.error('[ERROR] Failed to parse the message type');
                 console.log(ticks_data.error.message);
                 web_socket.removeEventListener(
                     'message',
@@ -38,7 +37,6 @@ connection
         const ticks_history_response = async (response) => {
             const ticks_data = JSON.parse(response.data);
             if (ticks_data.error !== undefined) {
-                console.error('[ERROR] Failed to parse the message type');
                 console.log(ticks_data.error.message);
                 web_socket.removeEventListener(
                     'message',
@@ -47,27 +45,21 @@ connection
                 );
                 await api.disconnect();
             }
-            if (ticks_data.msg_type === 'history')
-                console.log(ticks_data.history);
+            if (ticks_data.msg_type === 'history') console.log(ticks_data.history);
         };
         const subscribe_ticks = async () => {
-            console.log('[INFO] Starting the Tick Stream');
             web_socket.addEventListener('message', ticks_stream_response);
             await tick_stream();
-            console.log('[INFO] Tick Stream initialized. Outputting...');
         };
         const unsubscribe_ticks = async () => {
-            console.log('[INFO] Stopping the Tick Stream');
             web_socket.removeEventListener(
                 'message',
                 ticks_stream_response,
                 false,
             );
             await tick_stream().unsubscribe();
-            console.log('[INFO] Tick Stream stopped');
         };
         const get_ticks_history = async () => {
-            console.log('[INFO] Fetching the Ticks History...');
             web_socket.addEventListener('message', ticks_history_response);
             await api.ticksHistory(ticks_request_block);
         };
