@@ -32,6 +32,6 @@
   "plugins": [],
   "dependencies": {
     "@deriv/deriv-api": "^1.0.15",
-    "ws": "^8.16.0"
+    "ws": "^8.17.1"
   }
 }
